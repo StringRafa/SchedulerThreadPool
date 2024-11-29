@@ -49,9 +49,10 @@ public Executor task1Executor() {
 - **Isolamento de Tarefas**: Cada tarefa executa de forma independente, reduzindo impactos negativos entre elas.
 - **Escalabilidade**: A adição de novas tarefas ou ajustes em tarefas existentes é simplificada, sem impactos colaterais.
 - **Maior Confiabilidade**: A solução torna o sistema mais robusto e resiliente a problemas de concorrência.
-Quando Utilizar?
 
-### Essa abordagem é ideal em sistemas com:
+### Quando Utilizar?
+
+Essa abordagem é ideal em sistemas com:
 
 - Tarefas agendadas de longa duração.
 - Múltiplos agendadores concorrendo por recursos.
