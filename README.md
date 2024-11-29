@@ -28,3 +28,33 @@ public void schedulerTask1() {
         log.info("Finished task1Executor {}", LocalTime.now());
     });
 }
+```
+
+### Exemplo de Configuração de Executor Dedicado
+```java
+@Bean(name = "task1Executor")
+public Executor task1Executor() {
+    ThreadPoolTaskExecutor executor = new ThreadPoolTaskExecutor();
+    executor.setCorePoolSize(1);
+    executor.setMaxPoolSize(1);
+    executor.setQueueCapacity(1);
+    executor.setThreadNamePrefix("task1Executor-");
+    executor.setRejectedExecutionHandler(new DiscardPolicy());
+    executor.initialize();
+    return executor;
+}
+```
+### Benefícios da Solução
+- **Eliminação de Gargalos**: Tarefas longas não bloqueiam outras tarefas, garantindo o funcionamento contínuo.
+- **Isolamento de Tarefas**: Cada tarefa executa de forma independente, reduzindo impactos negativos entre elas.
+- **Escalabilidade**: A adição de novas tarefas ou ajustes em tarefas existentes é simplificada, sem impactos colaterais.
+- **Maior Confiabilidade**: A solução torna o sistema mais robusto e resiliente a problemas de concorrência.
+Quando Utilizar?
+
+### Essa abordagem é ideal em sistemas com:
+
+- Tarefas agendadas de longa duração.
+- Múltiplos agendadores concorrendo por recursos.
+- Requisitos de escalabilidade e previsibilidade na execução de tarefas.
+### Conclusão
+Com a configuração de executores dedicados, a aplicação ganha em desempenho, previsibilidade e robustez, resolvendo problemas críticos de concorrência entre schedulers no Spring Boot.
